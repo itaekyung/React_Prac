@@ -8,7 +8,7 @@ function App() {
     "JS 부수기",
     "React 부수기",
   ]);
-  let [like, setLike] = useState(0);
+  let [like, setLike] = useState([0, 0, 0]);
   let [modal, setModal] = useState(false); // UI 현재 상태를 저장 형식은  자유
   return (
     <div className="App">
@@ -22,7 +22,7 @@ function App() {
       >
         abc순서로 정렬
       </button>
-      <div className="list">
+      {/* <div className="list">
         <h4>
           {title[0]}{" "}
           <span
@@ -65,7 +65,31 @@ function App() {
           {title[2]}
         </h4>
         <p>2월 27일 발행</p>
-      </div>
+      </div> */}
+      {title.map(function (item, i) {
+        return (
+          <div className="list" key={i}>
+            <h4
+              onClick={() => {
+                setModal(!modal);
+              }}
+            >
+              {title[i]}{" "}
+            </h4>
+            <span
+              onClick={() => {
+                const newLike = [...like];
+                newLike[i] = newLike[i] + 1;
+                setLike(newLike);
+              }}
+            >
+              👍
+            </span>{" "}
+            {like[i]}
+            <p>2월 27일 발행</p>
+          </div>
+        );
+      })}{" "}
       {modal == true ? <Modal /> : null}
     </div>
   );
