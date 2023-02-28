@@ -90,7 +90,7 @@ function App() {
           </div>
         );
       })}{" "}
-      {modal == true ? <Modal /> : null}
+      {modal == true ? <Modal title={title} setTitle={setTitle} /> : null}
     </div>
   );
 }
@@ -99,12 +99,21 @@ function Header() {
   return <div className="black-nav">태키의 블로그</div>;
 }
 
-function Modal() {
+function Modal({ title, setTitle }) {
   return (
     <div className="modal">
-      <h4>제목</h4>
+      <h4>{title[0]}</h4>
       <p>날짜</p>
       <p>상세내용</p>
+      <button
+        onClick={() => {
+          const test = [...title];
+          test[0] = "부쉈다";
+          setTitle(test);
+        }}
+      >
+        글수정
+      </button>
     </div>
   );
 }
